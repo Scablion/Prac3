@@ -1,0 +1,125 @@
+WPF
+
+<Window x:Class="WpfAppForPrac.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppForPrac"
+        mc:Ignorable="d"
+        Title="MainWindow" Background="#04859D" Foreground="White" Height="600" Width="500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="121*"/>
+            <ColumnDefinition Width="171*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Задание 1" FontSize="25" FontFamily="Shentox" Grid.Column="1" VerticalAlignment="Top" Margin="3,25,4,0" HorizontalAlignment="Center" FontWeight="DemiBold" Height="30" Width="114"/>
+
+        <TextBlock FontSize="22" Text="Введите число" FontWeight="DemiBold" Grid.Row="1" Margin="10,78,115,76" Grid.ColumnSpan="2" Grid.RowSpan="2"></TextBlock>
+        <TextBox x:Name="firstMean" VerticalContentAlignment="Center" FontSize="22" HorizontalContentAlignment="Left" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="11,78,39,100" Grid.RowSpan="2"/>
+
+        <TextBlock Text="Ответ:" FontSize="22" FontWeight="DemiBold" Grid.Row="2" HorizontalAlignment="Right" Margin="0,78,37,0" RenderTransformOrigin="0.505,0.528"/>
+        <TextBlock x:Name="Answer" TextAlignment="Center" FontSize="20" Background="#5FBDCE" FontWeight="DemiBold" Grid.Row="2" Margin="3,63,47,45" Grid.ColumnSpan="2" Grid.Column="1" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2"/>
+
+
+        <Button x:Name="BtnOk" Content="Ок" FontSize="30" Click="BtnOk_Click" BorderThickness="2" Background="#015666" Width="150" Height="56" HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Center" Grid.Row="4" Margin="171,29,0,29"/>
+
+    </Grid>
+</Window>
+
+
+
+
+
+
+
+
+
+Code
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using static System.Math;
+
+namespace WpfAppForPrac
+{
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void BtnOk_Click(object sender, RoutedEventArgs e)
+        {
+
+            int x = int.Parse(firstMean.Text);
+            string description = "Число ";
+            if (x == 0)
+                description += "равно нулю.";
+            if (x > 0)
+            {
+                description += "положительное, \n";
+                if (x % 2 == 0)
+                    description += "четное, \n";
+                else
+                    description += "нечетное, \n";
+
+                if (x < 10 && x != 0)
+                    description += "однозначное.";
+                else if (x < 100)
+                    description += "двухзначное.";
+                else if (x < 1000)
+                    description += "трехзначное.";
+                else if (x < 10000)
+                    description += "четырехзначное.";
+                else if (x < 100000)
+                    description += "пятизначное.";
+                else 
+                    description += "многозначное.";
+            }
+            if (x < 0)
+            {
+                description += "отрицательное, \n";
+                if (x % 2 == 0)
+                    description += "четное,\n";
+                else
+                    description += "нечетное, \n";
+
+                if ((x > -10) && x != 0)
+                    description += "однозначное.";
+                else if (x > -100)
+                    description += "двухзначное.";
+                else if (x > -1000)
+                    description += "трехзначное.";
+                else if (x > -10000)
+                    description += "четырехзначное.";
+                else if (x > -100000)
+                    description += "пятизначное.";
+                else
+                    description += "многозначное.";
+            }
+            Answer.Text = description;
+        }
+    }
+}
